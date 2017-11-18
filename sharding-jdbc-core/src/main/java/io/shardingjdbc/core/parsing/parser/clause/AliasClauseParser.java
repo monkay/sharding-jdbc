@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * Alias clause parser.
+ *	别名子句解析器
  *
  * @author zhangliang
  */

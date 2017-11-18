@@ -26,7 +26,7 @@ import io.shardingjdbc.core.parsing.parser.sql.SQLParserFactory;
 import lombok.RequiredArgsConstructor;
 
 /**
- * SQL parsing engine.
+ * SQL parsing engine. SQL解析引擎
  *
  * @author zhangliang
  */

@@ -75,7 +75,11 @@ public final class ParsingSQLRouter implements SQLRouter {
         }
         return result;
     }
-    
+    /**
+     * 解析sql路由到具体分片执行
+     * 1、获取到tableUnits 包括dataSource, table
+     * 2、解析出需要执行的sql语句
+     */
     @Override
     public SQLRouteResult route(final String logicSQL, final List<Object> parameters, final SQLStatement sqlStatement) {
         SQLRouteResult result = new SQLRouteResult(sqlStatement);

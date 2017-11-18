@@ -18,7 +18,7 @@
 package io.shardingjdbc.core.parsing.lexer.token;
 
 /**
- * Default keyword.
+ * Default keyword. 默认关键字
  * 
  * @author zhangliang 
  */

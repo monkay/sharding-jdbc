@@ -81,7 +81,7 @@ public final class SQLRewriteEngine {
     
     /**
      * rewrite SQL.
-     *
+     * 重写sql, 
      * @param isRewriteLimit is rewrite limit
      * @return SQL builder
      */
@@ -112,7 +112,9 @@ public final class SQLRewriteEngine {
         }
         return result;
     }
-    
+    /**
+     * 根据SQL标记在原始sql中的位置排序
+     */
     private void sortByBeginPosition() {
         Collections.sort(sqlTokens, new Comparator<SQLToken>() {
             

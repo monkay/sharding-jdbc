@@ -43,7 +43,7 @@ public final class InlineShardingStrategy implements ShardingStrategy {
     private final String shardingColumn;
     
     private final Closure<?> closure;
-    
+    //根据策略demo_ds_${user_id % 2}字符串，生成策略类
     public InlineShardingStrategy(final String shardingColumn, final String inlineExpression) {
         this.shardingColumn = shardingColumn;
         closure = (Closure) new GroovyShell().evaluate(Joiner.on("").join("{it -> \"", inlineExpression.trim(), "\"}"));

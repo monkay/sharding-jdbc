@@ -18,7 +18,7 @@
 package io.shardingjdbc.core.parsing.lexer.token;
 
 /**
- * Keyword interface.
+ * Keyword interface. 词法关键词
  *
  * @author zhangliang
  */

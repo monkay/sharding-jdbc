@@ -18,7 +18,7 @@
 package io.shardingjdbc.core.parsing.parser.sql;
 
 /**
- * SQL parser.
+ * SQL parser.	SQL解析器
  *
  * @author zhangliang
  */

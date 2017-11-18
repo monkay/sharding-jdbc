@@ -25,7 +25,7 @@ import io.shardingjdbc.core.parsing.lexer.token.TokenType;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Tokenizer.
+ * Tokenizer. 标记分词器
  *
  * @author zhangliang
  */
@@ -49,7 +49,7 @@ public final class Tokenizer {
     private final int offset;
     
     /**
-     * skip whitespace.
+     * skip whitespace. 跳过空白字符串
      * 
      * @return offset after whitespace skipped 
      */

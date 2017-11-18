@@ -18,7 +18,7 @@
 package io.shardingjdbc.core.parsing.lexer.token;
 
 /**
- * Literals token.
+ * Literals token. 字面值
  *
  * @author zhangliang
  */

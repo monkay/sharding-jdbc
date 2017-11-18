@@ -26,52 +26,66 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Lexical analysis.
+ * Lexical analysis. 词法解析器
  * 
  * @author zhangliang 
  */
 @RequiredArgsConstructor
 public class Lexer {
-    
+    /**
+     * 输入字符串，sql
+     */
     @Getter
     private final String input;
-    
+    /**
+     * 词法标记字典
+     */
     private final Dictionary dictionary;
-    
+    /**
+     * 偏移量，sql的位置
+     */
     private int offset;
-    
+    /**
+     * 当前词法标记
+     */
     @Getter
     private Token currentToken;
     
     /**
-     * Analyse next token.
+     * Analyse next token. 分析下一个词法标记
      */
     public final void nextToken() {
         skipIgnoredToken();
-        if (isVariableBegin()) {
+        if (isVariableBegin()) {	//变量
             currentToken = new Tokenizer(input, dictionary, offset).scanVariable();
-        } else if (isNCharBegin()) {
+        } else if (isNCharBegin()) {	// N\
             currentToken = new Tokenizer(input, dictionary, ++offset).scanChars();
-        } else if (isIdentifierBegin()) {
+        } else if (isIdentifierBegin()) {	//字面值  Literals.IDENTIFIER
             currentToken = new Tokenizer(input, dictionary, offset).scanIdentifier();
-        } else if (isHexDecimalBegin()) {
+        } else if (isHexDecimalBegin()) {	//16进制 Literals.HEX
             currentToken = new Tokenizer(input, dictionary, offset).scanHexDecimal();
-        } else if (isNumberBegin()) {
+        } else if (isNumberBegin()) {	//数字，包括浮点
             currentToken = new Tokenizer(input, dictionary, offset).scanNumber();
-        } else if (isSymbolBegin()) {
+        } else if (isSymbolBegin()) {	//符号标记 
             currentToken = new Tokenizer(input, dictionary, offset).scanSymbol();
-        } else if (isCharsBegin()) {
+        } else if (isCharsBegin()) {	//字符串 如： "abc"中 "
             currentToken = new Tokenizer(input, dictionary, offset).scanChars();
-        } else if (isEnd()) {
+        } else if (isEnd()) {	//结束
             currentToken = new Token(Assist.END, "", offset);
-        } else {
+        } else {	//错误
             currentToken = new Token(Assist.ERROR, "", offset);
         }
         offset = currentToken.getEndPosition();
     }
-    
+    /**
+     * 跳过忽略词法标记
+     * 1、空格
+     * 2、hql hint
+     * 3、注释
+     */
     private void skipIgnoredToken() {
         offset = new Tokenizer(input, dictionary, offset).skipWhitespace();
+        //sql hint ，hint,是一种优化SQL的工具
         while (isHintBegin()) {
             offset = new Tokenizer(input, dictionary, offset).skipHint();
             offset = new Tokenizer(input, dictionary, offset).skipWhitespace();

@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 /**
- * Table token.
+ * Table token. sql表标记
  *
  * @author zhangliang
  */

@@ -61,6 +61,7 @@ public class TableRuleConfiguration {
      */
     public TableRule build(final Map<String, DataSource> dataSourceMap) {
         Preconditions.checkNotNull(logicTable, "Logic table cannot be null.");
+        //根据配置demo_ds_${0..1}.t_order_${[0, 1]}获取具体的表[demo_ds_0.t_order_0, demo_ds_0.t_order_1, demo_ds_1.t_order_0, demo_ds_1.t_order_1]
         List<String> actualDataNodes = new InlineExpressionParser(this.actualDataNodes).evaluate();
         ShardingStrategy databaseShardingStrategy = null == databaseShardingStrategyConfig ? null : databaseShardingStrategyConfig.build();
         ShardingStrategy tableShardingStrategy = null == tableShardingStrategyConfig ? null : tableShardingStrategyConfig.build();

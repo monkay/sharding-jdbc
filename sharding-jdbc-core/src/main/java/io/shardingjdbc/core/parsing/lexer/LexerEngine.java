@@ -66,7 +66,7 @@ public final class LexerEngine {
     
     /**
      * skip all tokens that inside parentheses.
-     *
+     * 跳过小括号内所有的词法标记.
      * @param sqlStatement SQL statement
      * @return skipped string
      */
@@ -81,9 +81,11 @@ public final class LexerEngine {
                 if (equalAny(Symbol.QUESTION)) {
                     sqlStatement.increaseParametersIndex();
                 }
+                // 到达结尾 或者 匹配合适数的)右括号
                 if (Assist.END == lexer.getCurrentToken().getType() || (Symbol.RIGHT_PAREN == lexer.getCurrentToken().getType() && 0 == count)) {
                     break;
                 }
+                // 处理里面有多个括号的情况，例如：SELECT COUNT(DISTINCT(order_id) FROM t_order
                 if (Symbol.LEFT_PAREN == lexer.getCurrentToken().getType()) {
                     count++;
                 } else if (Symbol.RIGHT_PAREN == lexer.getCurrentToken().getType()) {
@@ -126,7 +128,7 @@ public final class LexerEngine {
     
     /**
      * Skip current token if equals one of input tokens.
-     *
+     *	如果输入的标记类型跟当前的标记类型相等，则提过
      * @param tokenTypes to be adjusted token types
      * @return skipped current token or not
      */
@@ -176,7 +178,7 @@ public final class LexerEngine {
     
     /**
      * Throw unsupported exception if current token not equals one of input tokens.
-     *
+     *	如果当前标记跟输入标记不一样抛出遇到不支持标记异常
      * @param tokenTypes to be adjusted token types
      */
     public void unsupportedIfNotSkip(final TokenType... tokenTypes) {

@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * Table references clause parser.
- *
+ *	关联表
  * @author zhangliang
  */
 public class TableReferencesClauseParser implements SQLClauseParser {
@@ -74,7 +74,12 @@ public class TableReferencesClauseParser implements SQLClauseParser {
             throw new UnsupportedOperationException("Cannot support Multiple-Table.");
         }
     }
-    
+    /**
+     * 解析关联表
+     * 1、解析关联的表
+     * 2、解析关联的条件
+     * @param sqlStatement
+     */
     private void parseJoinTable(final SQLStatement sqlStatement) {
         while (parseJoinType()) {
             if (lexerEngine.equalAny(Symbol.LEFT_PAREN)) {
